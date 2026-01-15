@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="edit.js"></script>
+  </head>
+  <body>
+
+    <nav class="bg-gray-400 flex justify-between px-16 py-5 w-full">
+      <ul class="flex items-center gap-5">
+        <a href="../index.html"><img class="h-20" src="../../img/logo.png" /></a>
+        <h2 class="font-bold text-2xl">Quiz App</h2>
+      </ul>
+      <ul class="flex gap-10 items-center">
+        <li><a href="edit.html" class="font-semibold text-lg rounded-full border-2 border-b-4 hover:border-b-2 border-gray-500 p-3">Edit quiz</a></li>
+        <li><a href="../play/play.html" class="font-semibold text-lg rounded-full border-2 border-b-4 hover:border-b-2 border-gray-500 p-3">Play quiz</a></li>
+      </ul>
+    </nav>
+
+    <div id="questions-dialog" style="display: none" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+      <dialog open class="bg-white rounded-xl shadow-xl w-full max-w-md p-6">
+        <header class="text-xl font-bold mb-4 text-gray-800">Create new question</header>
+
+        <section class="space-y-3">
+          <label class="font-semibold text-gray-700">Title</label>
+          <input id="title" type="text" placeholder="Question title" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
+          <label class="font-semibold text-gray-700">Answers</label>
+          <input id="choiceA" type="text" placeholder="Answer A" class="w-full border border-gray-300 rounded-lg px-3 py-2"/>
+          <input id="choiceB" type="text" placeholder="Answer B" class="w-full border border-gray-300 rounded-lg px-3 py-2"/>
+          <input id="choiceC" type="text" placeholder="Answer C" class="w-full border border-gray-300 rounded-lg px-3 py-2"/>
+          <input id="choiceD" type="text" placeholder="Answer D" class="w-full border border-gray-300 rounded-lg px-3 py-2"/>
+        </section>
+
+        <menu class="flex justify-end gap-3 mt-6">
+          <button onclick="onCancel()" class="px-4 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 transition">Cancel</button>
+          <button onclick="onCreate()" class="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition">Create</button>
+        </menu>
+      </dialog>
+    </div>
+
+    <div id="edit-view" class="max-w-4xl mx-auto p-6">
+        <div id="questions-view" class="bg-white rounded-xl shadow-md p-6">
+            <button onclick="onAddQuestion()" class="mb-4 px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                Add question
+            </button>
+            <div id="questions-container" class="space-y-3"></div>
+        </div>
+    </div>
+
+  </body>
+</html> 
