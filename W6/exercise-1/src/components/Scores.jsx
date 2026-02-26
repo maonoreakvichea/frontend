@@ -12,8 +12,8 @@ export default function Scores({ courseName, courseResult }) {
           </tr>
         </thead>
         <tbody>
-          {courseResult.map((res, idx) => (
-            <tr key={idx}>
+          {courseResult.map((res) => (
+            <tr>
               <td>{res.firstName}</td>
               <td>{res.lastName}</td>
               <td className={res.score < 50 ? "warning" : ""}>{res.score}</td>
