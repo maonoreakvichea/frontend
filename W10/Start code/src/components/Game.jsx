@@ -33,6 +33,7 @@ function Game() {
     const [playerHealth, setPlayerHealth] = React.useState(100);
     const [monsterHealth, setMonsterHealth] = React.useState(100);
     const [logs, setLogs] = React.useState([]);
+    const [turn, setTurn] = React.useState(0);
 
     const isGameOver = playerHealth <= 0 || monsterHealth <= 0;
 
@@ -61,19 +62,25 @@ function Game() {
     setLogs((prev) => [...prev, createLogAttack(false, damage)]);
   };
 
-  const attackHandler = () => {
-    if (isGameOver) return;
-    const damage = getRandomValue(0, 10);
-    setMonsterHealth((h) => Math.max(h - damage, 0));
-    setLogs((prev) => [...prev, createLogAttack(true, damage)]);
-    applyMonsterAttack();
-  };
+const attackHandler = () => {
+  if (isGameOver) return;
+
+  const damage = getRandomValue(0, 10);
+  setMonsterHealth((h) => Math.max(h - damage, 0));
+  setLogs((prev) => [...prev, createLogAttack(true, damage)]);
+
+  setTurn((t) => t + 1); 
+  applyMonsterAttack();
+};
 
   const specialHandler = () => {
-    if (isGameOver) return;
+    if (isGameOver || turn < 3) return; 
+
     const damage = getRandomValue(10, 20);
     setMonsterHealth((h) => Math.max(h - damage, 0));
     setLogs((prev) => [...prev, createLogAttack(true, damage)]);
+    
+    setTurn(0); 
     applyMonsterAttack();
   };
 
@@ -82,6 +89,8 @@ function Game() {
     const healing = getRandomValue(5, 15);
     setPlayerHealth((h) => Math.min(h + healing, 100));
     setLogs((prev) => [...prev, createLogHeal(healing)]);
+
+    setTurn((t) => t + 1);
     applyMonsterAttack();
   };
 
